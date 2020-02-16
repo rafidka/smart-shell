@@ -1,10 +1,14 @@
 SMART_BASH=~/smart-bash
 
 # Clone the repository if it is not already cloned
-[ -d ${SMART_BASH} ] || git clone https://github.com/rafidka/smart-bash.git ${SMART_BASH}
+[ -d ${SMART_BASH} ] || {
+  echo "Cloning smart-bash repository under ${SMART_BASH}..."
+  git clone https://github.com/rafidka/smart-bash.git ${SMART_BASH}
+}
 
 # Ensure that .bashrc imports smart-bash.
 cat ~/.bashrc | grep -q '>>> smart-bash >>>' || {
+  echo "Updating .bashrc..."
   cat <<TEXT >> ~/.bashrc
 # >>> smart-bash >>>
 # !! Contents within this block are managed by smart-bash
@@ -14,6 +18,7 @@ TEXT
 }
 
 cat ~/.vimrc | grep -q '>>> smart-bash >>>' || {
+  echo "Updating .vimrc..."
   cat <<TEXT >> ~/.vimrc
 " >>> smart-bash >>>
 " !! Contents within this block are managed by smart-bash
@@ -21,3 +26,5 @@ cat ~/.vimrc | grep -q '>>> smart-bash >>>' || {
 " <<< smart-bash <<<
 TEXT
 }
+
+echo "Done."

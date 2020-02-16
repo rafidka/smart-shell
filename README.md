@@ -66,15 +66,18 @@ configurations to GitHubs
 
 # Installation
 
-1. Clone the repositiory:
-```bash
-git clone --depth 1 https://github.com/rafidka/smart-bash.git ~/smart-bash
+`smart-bash` can be installed with the following command:
+
 ```
-2. Update your `.bashrc` or `.bash_profile` file to include the following line at the beginning:
-```bash
-[ -f ~/smart-bash/smart-bash.bash ] && source ~/smart-bash/smart-bash.bash
+wget -qO- https://raw.githubusercontent.com/rafidka/smart-bash/master/install.bash | bash
 ```
-3. Enjoy!
+
+This will do the following:
+
+1. Clone the repository under `~/smart-bash`.
+1. Update `.bashrc` file to source `~/smart-bash/activate.bash`. This file, on the other hand, ensures that the repository is up-to-date and then source the `~/smart-bash/smart-bash.bash` file.
+1. Upon execution, `smart-bash.bash` will also install Fuzzy Finder under `~/.fzf`.
+1. Update `.vimrc` to source `~/smart-bash/vimrc.vim`.
 
 It is also worth mentioning that depending on whether you are running bash in
 interactive or non-interactive mode, either `.bashrc` or `.bash_profile` will
