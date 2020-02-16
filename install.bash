@@ -12,3 +12,12 @@ cat ~/.bashrc | grep -q '>>> smart-bash >>>' || {
 # <<< smart-bash<<<
 TEXT
 }
+
+cat ~/.vimrc | grep -q '>>> smart-bash >>>' || {
+  cat <<TEXT >> ~/.vimrc
+" >>> smart-bash >>>
+" !! Contents within this block are managed by smart-bash
+:so ~/smart-bash/vimrc.vim
+" <<< smart-bash <<<
+TEXT
+}
