@@ -6,10 +6,10 @@ SMART_BASH=~/smart-bash
   git clone https://github.com/rafidka/smart-bash.git ${SMART_BASH}
 }
 
-# Ensure that .bashrc imports smart-bash.
-cat ~/.bashrc | grep -q '>>> smart-bash >>>' || {
-  echo "Updating .bashrc..."
-  cat <<TEXT >> ~/.bashrc
+# Ensure that .bash_profile imports smart-bash.
+cat ~/.bash_profile | grep -q '>>> smart-bash >>>' || {
+  echo "Updating .bash_profile..."
+  cat <<TEXT >> ~/.bash_profile
 # >>> smart-bash >>>
 # !! Contents within this block are managed by smart-bash
 [ -f ~/smart-bash/activate.bash ] && source ~/smart-bash/activate.bash
