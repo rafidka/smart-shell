@@ -38,7 +38,7 @@ PS1="${B_GREEN}\u@\h${B_BLUE} [\w${B_RED}"'$(__git_ps1 " ~(%s)")'"${B_BLUE}]${RE
 export PATH=$HOME/bin:$PATH
 
 # Add colors and a '/' after directory names.
-alias ls='ls -GF'
+alias ls='ls -GF --color'
 
 # Use vimcat to colorize cat
 # https://www.vim.org/scripts/script.php?script_id=4325
