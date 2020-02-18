@@ -133,6 +133,10 @@ Plug 'rust-lang/rust.vim'
 let g:python_highlight_all = 1
 Plug 'vim-python/python-syntax'
 
+" vim-airline
+let g:airline#extensions#tabline#enabled = 1
+Plug 'vim-airline/vim-airline'
+
 " Initialize plugin system
 call plug#end()
 
