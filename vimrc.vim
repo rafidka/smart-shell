@@ -67,9 +67,6 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 						   " wrapmargin inserts breaks if you exceed its value
 "set cscopeprg=~/bin/cscope  "set cscope bin path
 
-"Set colorscheme.  This is a black background colorscheme
-colorscheme darkblue
-
 " viminfo options
 " read/write a .viminfo file, don't store more than
 " 50 lines of registers
@@ -94,6 +91,9 @@ if has('nvim')
 else
   call plug#begin('~/.vim/plugged')
 endif
+
+" vim-code-dark https://github.com/tomasiser/vim-code-dark#installation
+Plug 'tomasiser/vim-code-dark'
 
 " vim-prettier
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
@@ -129,8 +129,16 @@ Plug 'ctrlpvim/ctrlp.vim'
 " rust.vim
 Plug 'rust-lang/rust.vim'
 
+" python-syntax: Improved synatx highlighting for Python.
+let g:python_highlight_all = 1
+Plug 'vim-python/python-syntax'
+
 " Initialize plugin system
 call plug#end()
+
+"Set colorscheme to vim-code dark, which is similar to VSCode.
+colorscheme codedark
+
 
 " vim-prettier config
 let g:prettier#autoformat = 0
