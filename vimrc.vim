@@ -169,3 +169,8 @@ nnoremap <silent> <F4> :bp<CR>
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 
+" Enable mouse reporting through SGR if available.
+" https://iterm2.com/faq.html
+if has('mouse_sgr')
+    set ttymouse=sgr
+endif
