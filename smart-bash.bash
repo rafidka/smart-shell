@@ -37,14 +37,6 @@ PS1="${B_GREEN}\u@\h${B_BLUE} [\w${B_RED}"'$(__git_ps1 " ~(%s)")'"${B_BLUE}]${RE
 # Local bin directory
 export PATH=$HOME/bin:$PATH
 
-# Add colors and a '/' after directory names.
-if [ `uname` == Darwin ]; then
-  # ls on macOS uses -G for colors
-  alias ls='ls -GF'
-else
-  alias ls='ls -F --color'
-fi
-
 # Use vimcat to colorize cat
 # https://www.vim.org/scripts/script.php?script_id=4325
 [ -f ~/bin/vimcat ] || {
@@ -55,15 +47,4 @@ fi
 }
 alias vimcat=~/bin/vimcat
 
-# Change to temp/ directory, and create it if it is not created
-alias t="mkdir -p ~/temp && cd ~/temp"
-
-# Generate a random password
-alias passgen="openssl rand -base64 32"
-
-# Opens nvim in a temporary file. Useful for quickly jotting down some notes in
-# Vim.
-alias notes='nvim `mktemp /tmp/vim.temp.file.XXXXXX`'
-
-# Easy alias to run ipython
-alias py=ipython
+[ -f $HOME/smart-bash/smart-aliases.bash ] && source "$HOME/smart-bash/smart-aliases.bash"
