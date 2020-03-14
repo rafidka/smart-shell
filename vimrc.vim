@@ -3,7 +3,7 @@ syntax on
 
 " Standard vim options
 set autoindent            " always set autoindenting on
-set autoread              " automatically load files when they change 
+set autoread              " automatically load files when they change
 set backspace=2           " allow backspacing over everything in insert mode
 set cindent               " c code indenting
 set diffopt=filler,iwhite " keep files synced and ignore whitespace
@@ -44,6 +44,7 @@ set nowrap                " Disable wrapping
 set report=0              " Report every change in the file
 set hlsearch              " Highlight search matches
 set incsearch             " Enable incremental search
+set mouse=a               " Enable mouse in all modes (see help mouse)
 
 "Longer Set options
 set cscopequickfix=s-,c-,d-,i-,t-,e-,g-,f-   " useful for cscope in quickfix
@@ -64,7 +65,7 @@ set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.i
 "set list                    " Make tabs and trails explicit
 "set noswapfile              " this guy is really annoyoing sometimes
 "set wrapmargin=80           " When pasteing, use this, because textwidth becomes 0
-						   " wrapmargin inserts breaks if you exceed its value
+                             " wrapmargin inserts breaks if you exceed its value
 "set cscopeprg=~/bin/cscope  "set cscope bin path
 
 " viminfo options
@@ -136,17 +137,27 @@ Plug 'vim-python/python-syntax'
 " vim-airline
 let g:airline#extensions#tabline#enabled = 1
 Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+" vim-go
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Initialize plugin system
 call plug#end()
 
-"Set colorscheme to vim-code dark, which is similar to VSCode.
+" Set colorscheme to vim-code dark, which is similar to VSCode. This depends on
+" the 'tomasiser/vim-code-dark' plugin added above.
 colorscheme codedark
-
 
 " vim-prettier config
 let g:prettier#autoformat = 0
 " autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+
+" vim-airline configuration
+let g:airline_theme = 'luna'                    " Airline theme. See: https://github.com/vim-airline/vim-airline-themes
+let g:airline#extensions#tabline#enabled = 1    " automatically display all buffers when there's only one tab open.
+let g:airline_statusline_ontop = 1              " status line on top, making room for other plugins to use the status line.
+let g:airline_powerline_fonts = 1               " integrate with powerline fonts - require installation of a patched powerline font.
 
 " --- DISABLING RtlvNmbr for now because it seems to be causing Vim to be slow.
 " if has('nvim')
