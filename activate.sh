@@ -6,12 +6,12 @@ cd ${SMARTSHELL_HOME}
 git pull origin master
 
 case $SHELL in
-*/zsh)
+*zsh)
     # Assume Zsh shell
     export SMARTSHELL_SHELLTYPE=zsh
     source ${SMARTSHELL_HOME}/smart-shell.zsh
     ;;
-*/bash)
+*bash)
     # Assume Bash shell
     export SMARTSHELL_SHELLTYPE=bash
     source ${SMARTSHELL_HOME}/smart-shell.bash

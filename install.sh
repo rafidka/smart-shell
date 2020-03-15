@@ -10,6 +10,7 @@ export SMARTSHELL_HOME=~/smart-shell
 cat ~/.bash_profile | grep -q '>>> smart-shell >>>' || {
   echo "Updating .bash_profile..."
   cat <<TEXT >> ~/.bash_profile
+
 # >>> smart-shell >>>
 # !! Contents within this block are managed by smart-shell
 [ -f ~/smart-shell/activate.sh ] && source ~/smart-shell/activate.sh
@@ -21,6 +22,7 @@ TEXT
 cat ~/.zshrc | grep -q '>>> smart-shell >>>' || {
   echo "Updating .zshrc..."
   cat <<TEXT >> ~/.zshrc
+
 # >>> smart-shell >>>
 # !! Contents within this block are managed by smart-shell
 [ -f ~/smart-shell/activate.sh ] && source ~/smart-shell/activate.sh

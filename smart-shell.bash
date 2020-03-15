@@ -5,7 +5,7 @@ source ${SMARTSHELL_HOME}/smart-shell-common.sh
 source ${SMARTSHELL_HOME}/oh-my-bash.bash
 
 # Constants for bash colors.
-[ -f ${SMARTSHELL_HOME}/bash_colors.bash ] && source "${SMARTSHELL_HOME}/bash_colors.bash"
+[ -f ${SMARTSHELL_HOME}/colors.bash ] && source "${SMARTSHELL_HOME}/colors.bash"
 
 # Fuzzy finder already configures C-T for searching for file in the current
 # directory hierarchy and C-R to search for command in the history. Adding
