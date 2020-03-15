@@ -12,7 +12,7 @@ cat ~/.bash_profile | grep -q '>>> smart-shell >>>' || {
   cat <<TEXT >> ~/.bash_profile
 # >>> smart-shell >>>
 # !! Contents within this block are managed by smart-shell
-[ -f ~/smart-shell/activate.bash ] && source ~/smart-shell/activate.sh
+[ -f ~/smart-shell/activate.sh ] && source ~/smart-shell/activate.sh
 # <<< smart-shell<<<
 TEXT
 }
@@ -23,7 +23,7 @@ cat ~/.zshrc | grep -q '>>> smart-shell >>>' || {
   cat <<TEXT >> ~/.zshrc
 # >>> smart-shell >>>
 # !! Contents within this block are managed by smart-shell
-[ -f ~/smart-shell/activate.bash ] && source ~/smart-shell/activate.sh
+[ -f ~/smart-shell/activate.sh ] && source ~/smart-shell/activate.sh
 # <<< smart-shell<<<
 TEXT
 }

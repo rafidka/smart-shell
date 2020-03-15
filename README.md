@@ -69,7 +69,7 @@ configurations to GitHubs
 `smart-shell` can be installed with the following command:
 
 ```
-wget -qO- https://raw.githubusercontent.com/rafidka/smart-shell/master/install.bash | sh
+wget -qO- https://raw.githubusercontent.com/rafidka/smart-shell/master/install.sh | sh
 ```
 
 This will do the following:
