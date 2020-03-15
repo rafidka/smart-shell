@@ -10,13 +10,13 @@ export OSH=${SMARTSHELL_PLUGINS}/oh-my-bash
 # it'll load a random theme each time that oh-my-bash is loaded.
 # Using powerline-multiline. For configuration, see:
 # https://github.com/ohmybash/oh-my-bash/tree/master/themes/powerline-multiline
-function __powerline_label_prompt {
-  if ! [[ -z $PROMPT_LABEL ]]; then
-    echo "$PROMPT_LABEL|${CWD_THEME_PROMPT_COLOR}"
+function __powerline_custom_label_prompt {
+  if ! [[ -z $OSH_POWERLINE_PROMPT_CUSTOM_LABEL ]]; then
+    echo "$OSH_POWERLINE_PROMPT_CUSTOM_LABEL|${USER_INFO_THEME_PROMPT_COLOR_SUDO}"
   fi
 }
-POWERLINE_LEFT_PROMPT="label python_venv cwd scm"
-POWERLINE_RIGHT_PROMPT="in_vim battery clock user_info"
+POWERLINE_LEFT_PROMPT="custom_label python_venv cwd scm"
+POWERLINE_RIGHT_PROMPT="in_vim battery clock"
 OSH_THEME="powerline-multiline"
 
 # Uncomment the following line to use case-sensitive completion.
