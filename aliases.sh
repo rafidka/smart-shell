@@ -1,11 +1,10 @@
-# Not needed anymore, since I am going to use oh-my-bash and oh-my-zsh
 # Add colors and a '/' after directory names.
-# if [ `uname` == Darwin ]; then
-#   # ls on macOS uses -G for colors
-#   alias ls='ls -GF'
-# else
-#   alias ls='ls -F --color'
-# fi
+if [ `uname` == Darwin ]; then
+  # ls on macOS uses -G for colors
+  alias ls='ls -GF'
+else
+  alias ls='ls -F --color'
+fi
 
 # Change to temp/ directory; create it if it is not created.
 alias t="mkdir -p ~/temp && cd ~/temp"
