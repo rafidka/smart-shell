@@ -13,31 +13,25 @@ configurations to GitHubs
 
 - [Table of Contents](#table-of-contents)
 - [Features](#features)
-  - [Bash](#bash)
-  - [Git](#git)
+  - [Shell (Z shell and Bash)](#shell-z-shell-and-bash)
   - [Vim Features](#vim-features)
 - [Installation](#installation)
+  - [Bash Users](#bash-users)
 
 # Features
 
-## Bash
+## Shell (Z shell and Bash)
 
-- A list of predefined configurations to improve the bash experience, for example:
-  - Update the prompt (PS1) to be more colorful!
-  - Increase command history to a million so you don't lose any command from your history.
-  - Some useful aliases.
+- Z shell: Install [oh-my-zsh](https://github.com/ohmyzsh/ohmyzsh) for improved experience.
+- Bash: Install [oh-my-bash](https://github.com/ohmybash/oh-my-bash/) for improved experience.
+- Increase command history to a million so you don't lose any command from your history.
+- Some useful aliases.
 - A colored version of `cat` using [vimcat](https://www.vim.org/scripts/script.php?script_id=4325). Just type `vimcat <filename>` to display file with highlighting.
-- A random password generator. Try it by calling: `passgen`.
-- Update `ls` to show colorful output.
+- A random password generator. Try it by calling: `newpass`.
 - Install [fzf](https://github.com/junegunn/fzf) for fuzzy finding:
   - Use Ctrl-T to search for files in the current hierarchy.
   - Use Ctrl-F to search the content of files in the current hierarchy.
   - Use Ctrl-R to search command history using fuzzy funder.
-
-## Git
-
-- Enable git auto completion.
-- Update PS1 to show the current branch if inside a Git repository.
 
 ## Vim Features
 
@@ -63,21 +57,29 @@ configurations to GitHubs
   - [rust.vim](https://github.com/rust-lang/rust.vim)
   - [vim-fugitive](https://github.com/tpope/vim-fugitive)
   - [vim-prettier](https://github.com/prettier/vim-prettier)
+  - [vim-code-dark](https://github.com/tomasiser/vim-code-dark)
+  - [python-syntax](https://github.com/vim-python/python-syntax)
+  - [rust-lang](https://github.com/rust-lang/rust.vim)
+  - [vim-airline](https://github.com/vim-airline/vim-airline)
+  - [vim-airline-themes](https://github.com/vim-airline/vim-airline-themes)
+  - [vim-go](https://github.com/fatih/vim-go)
 
 # Installation
 
-`smart-bash` can be installed with the following command:
+`smart-shell` can be installed with the following command:
 
 ```
-wget -qO- https://raw.githubusercontent.com/rafidka/smart-bash/master/install.bash | bash
+wget -qO- https://raw.githubusercontent.com/rafidka/smart-shell/master/install.bash | sh
 ```
 
 This will do the following:
 
-1. Clone the repository under `~/smart-bash`.
-1. Update `.bashrc` file to source `~/smart-bash/activate.bash`. This file, on the other hand, ensures that the repository is up-to-date and then source the `~/smart-bash/smart-bash.bash` file.
-1. Upon execution, `smart-bash.bash` will also install Fuzzy Finder under `~/.fzf`.
-1. Update `.vimrc` to source `~/smart-bash/vimrc.vim`.
+1. Clone the repository under `~/smart-shell`.
+1. Update `.zshrc` and `.bash_profile` files to source `~/smart-shell/activate.sh`. This file, on the other hand, ensures that the repository is up-to-date and then source the `~/smart-shell/smart-shell.{bash|zsh}` file.
+1. Update `.vimrc` to source `~/smart-shell/vimrc.vim`.
+1. Upon execution, `smart-shell.{bash|zsh}` will also install the necessary plugins.
+
+## Bash Users
 
 It is also worth mentioning that depending on whether you are running bash in
 interactive or non-interactive mode, either `.bashrc` or `.bash_profile` will
