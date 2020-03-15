@@ -4,9 +4,6 @@ source ${SMARTSHELL_HOME}/smart-shell-common.sh
 # Activate Oh My Zsh; install it first if it is not.
 source ${SMARTSHELL_HOME}/oh-my-bash.bash
 
-# Constants for bash colors.
-[ -f ${SMARTSHELL_HOME}/colors.bash ] && source "${SMARTSHELL_HOME}/colors.bash"
-
 # Fuzzy finder already configures C-T for searching for file in the current
 # directory hierarchy and C-R to search for command in the history. Adding
 # C-f to search the content of the files in the current folder hierarchy.
