@@ -1,12 +1,11 @@
-[ -f $HOME/smart-bash/bash_colors.bash ] && source "$HOME/smart-bash/bash_colors.bash"
+# Source stuff common to bash and zsh
+source ${SMARTSHELL_HOME}/smart-shell-common.sh
 
-# https://github.com/junegunn/fzf
-[ -f ~/.fzf.bash ] || {
-  echo "Installing fuzzy finder..."
-  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
-  ~/.fzf/install
-}
-source ~/.fzf.bash
+# Activate Oh My Zsh; install it first if it is not.
+source ${SMARTSHELL_HOME}/oh-my-bash.bash
+
+# Constants for bash colors.
+[ -f ${SMARTSHELL_HOME}/bash_colors.bash ] && source "${SMARTSHELL_HOME}/bash_colors.bash"
 
 # Fuzzy finder already configures C-T for searching for file in the current
 # directory hierarchy and C-R to search for command in the history. Adding
@@ -19,9 +18,10 @@ shopt -s histreedit
 shopt -s cdspell # Auto fix small mistakes in CD command
 shopt -s dirspell # Auto fix dir name on tab completion
 
-# Increase  history size
-HISTSIZE=1000000
-HISTFILESIZE=1000000
+export HISTTIMEFORMAT="%h %d %H:%M:%S " # Add date and time to history
+export HISTCONTROL=ignoredups:erasedups # No duplicate entries
+export HISTSIZE=1000000                 # Increase  history size
+export HISTFILESIZE=1000000             # Increase  history size
 
 # Git auto complete: https://git-scm.com/book/en/v1/Git-Basics-Tips-and-Tricks
 [ -f ~/bin/git-completion.bash ] && [ -f ~/bin/git-prompt.sh ] || {
@@ -32,19 +32,3 @@ HISTFILESIZE=1000000
 }
 source ~/bin/git-completion.bash
 source ~/bin/git-prompt.sh
-PS1="${B_GREEN}\u@\h${B_BLUE} [\w${B_RED}"'$(__git_ps1 " ~(%s)")'"${B_BLUE}]${RESET} "
-
-# Local bin directory
-export PATH=$HOME/bin:$PATH
-
-# Use vimcat to colorize cat
-# https://www.vim.org/scripts/script.php?script_id=4325
-[ -f ~/bin/vimcat ] || {
-  echo "Downloading vimcat..."
-  mkdir -p ~/bin
-  wget https://www.vim.org/scripts/download_script.php?src_id=23422 -O ~/bin/vimcat
-  chmod u+x ~/bin/vimcat
-}
-alias vimcat=~/bin/vimcat
-
-[ -f $HOME/smart-bash/smart-aliases.bash ] && source "$HOME/smart-bash/smart-aliases.bash"
