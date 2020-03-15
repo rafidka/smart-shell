@@ -9,18 +9,31 @@ source ${SMARTSHELL_HOME}/smart-shell-common.sh
 # Fuzzy finder already configures C-T for searching for file in the current
 # directory hierarchy and C-R to search for command in the history. Adding
 # C-f to search the content of the files in the current folder hierarchy.
-# TODO fix for zsh shell
-#bind -x '"\C-f": "ag --nobreak --noheading . | fzf"'
-#search-in-files-content-widget() {
-#  LBUFFER="${LBUFFER}$(__fsel)"
-#  local ret=$?
-#  zle reset-prompt
-#  return $ret
-#}
-#zle     -N   search-in-files-content-widget
-#bindkey '^F' search-in-files-content-widget
-#
-#bindkey '^F' 'ag --nobreak --noheading . | fzf'
+__ss_fzf_file_content_search() {
+  local cmd="command ag --nobreak --noheading --nocolor . 2> /dev/null"
+  setopt localoptions pipefail no_aliases 2> /dev/null
+  eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
+    A="$(echo 'one_two_three_four_five' | cut -d'_' -f2)"
+    filepath=$(echo $item | cut -d':' -f1)
+    lineno=$(echo $item | cut -d':' -f2)
+    echo vim +${lineno} ${filepath}
+    break
+  done
+  local ret=$?
+  echo
+  return $ret
+}
+ss-fzf-file-content-widget() {
+  LBUFFER="${LBUFFER}$(__ss_fzf_file_content_search)"
+  local ret=$?
+  zle reset-prompt
+  return $ret
+}
+zle     -N   ss-fzf-file-content-widget
+bindkey '^F' ss-fzf-file-content-widget
+
+
+
 
 HISTFILE="$HOME/.zsh_history"
 HISTSIZE=10000000
