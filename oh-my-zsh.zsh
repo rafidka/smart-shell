@@ -19,7 +19,7 @@ export ZSH=${SMARTSHELL_PLUGINS}/oh-my-zsh
 
 # Uncomment the following line to use hyphen-insensitive completion.
 # Case-sensitive completion must be off. _ and - will be interchangeable.
-# HYPHEN_INSENSITIVE="true"
+HYPHEN_INSENSITIVE="true"
 
 # Uncomment the following line to disable bi-weekly auto-update checks.
 # DISABLE_AUTO_UPDATE="true"
@@ -40,10 +40,10 @@ export ZSH=${SMARTSHELL_PLUGINS}/oh-my-zsh
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# COMPLETION_WAITING_DOTS="true"
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -56,18 +56,17 @@ export ZSH=${SMARTSHELL_PLUGINS}/oh-my-zsh
 # "mm/dd/yyyy"|"dd.mm.yyyy"|"yyyy-mm-dd"
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
-# HIST_STAMPS="mm/dd/yyyy"
+HIST_STAMPS="yyyy-mm-dd"
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
-# TODO: Using agnoster for now since it is available for oh-my-bash and oh-my-zsh
-# # Install agnosterzak-ohmyzsh-theme theme
-# # https://github.com/zakaziko99/agnosterzak-ohmyzsh-theme
-# [ -f ${ZSH_CUSTOM:-${ZSH}/custom}/themes/agnosterzak.zsh-theme ] || {
-#   echo "Downloading AgnosterZak theme..."
-#   wget -O ${ZSH_CUSTOM:-${ZSH}/custom}/themes/agnosterzak.zsh-theme https://raw.githubusercontent.com/zakaziko99/agnosterzak-ohmyzsh-theme/master/agnosterzak.zsh-theme
-# }
+# Install agnoster theme (the original one, not the one under oh-my-zsh)
+# https://github.com/agnoster/agnoster-zsh-theme
+[ -f ${ZSH_CUSTOM:-${ZSH}/custom}/themes/agnoster-original.zsh-theme ] || {
+  echo "Downloading Agnoster theme from its original repository..."
+  wget -O ${ZSH_CUSTOM:-${ZSH}/custom}/themes/agnoster-original.zsh-theme https://raw.githubusercontent.com/agnoster/agnoster-zsh-theme/master/agnoster.zsh-theme
+}
 
 # Install zsh-syntax-highlighting.
 [ -d ${ZSH_CUSTOM:-${ZSH}/custom}/plugins/zsh-syntax-highlighting ] || {
@@ -86,7 +85,7 @@ export ZSH=${SMARTSHELL_PLUGINS}/oh-my-zsh
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="agnoster"
+ZSH_THEME="agnoster-original"
 
 # Which plugins would you like to load?
 # Standard plugins can be found in ${ZSH}/plugins/*
@@ -102,14 +101,39 @@ plugins=(
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
   # Add osx plugin
-  plugins=($plugins osx)
+  plugins=(${plugins[@]} osx)
 fi
 
 # Add zsh-syntax-highlighting plugin; it must be the last:
 # https://github.com/zsh-users/zsh-syntax-highlighting/blob/master/INSTALL.md#oh-my-zsh
-plugins=($plugins zsh-syntax-highlighting)
+plugins=(${plugins[@]} zsh-syntax-highlighting)
 
 source $ZSH/oh-my-zsh.sh
+
+# Customize the prompt for agnoster theme:
+# - The segment 'prompt_virtualenv' doesn't work with conda, so creating a custom one.
+# - Re-order the segments
+# TODO
+# - show current datetime
+# - show battery percentage
+function ss_prompt_python_env() {
+  local python_venv=""
+
+  if [[ -n "${CONDA_DEFAULT_ENV}" ]]; then
+    python_venv="(c) ${CONDA_DEFAULT_ENV}"
+  elif [[ -n "${VIRTUAL_ENV}" ]]; then
+    python_venv=$(basename "${VIRTUAL_ENV}")
+  fi
+
+  if [[ -n $python_venv ]]; then
+    color=cyan
+    prompt_segment $color $PRIMARY_FG
+    print -Pn " ${python_venv} "
+  fi
+}
+
+AGNOSTER_PROMPT_SEGMENTS=(prompt_status prompt_context ss_prompt_python_env prompt_dir prompt_git prompt_end)
+DEFAULT_USER=rafidka
 
 # User configuration
 
