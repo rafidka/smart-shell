@@ -1,8 +1,10 @@
-# Source stuff common to bash and zsh
-source ${SMARTSHELL_HOME}/smart-shell-common.sh
+source ${SMARTSHELL_HOME}/install-plugins.sh
 
 # Activate Oh My Zsh; install it first if it is not.
 source ${SMARTSHELL_HOME}/oh-my-zsh.zsh
+
+# Source stuff common to bash and zsh
+source ${SMARTSHELL_HOME}/smart-shell-common.sh
 
 # Fuzzy finder already configures C-T for searching for file in the current
 # directory hierarchy and C-R to search for command in the history. Adding

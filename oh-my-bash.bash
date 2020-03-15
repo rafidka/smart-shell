@@ -1,6 +1,7 @@
 # Path to your oh-my-bash installation.
 export OSH=${SMARTSHELL_PLUGINS}/oh-my-bash
 
+# TODO: Should the installation part be moved to install-plugins.sh?
 [ -d ${OSH} ] || {
   echo "Installing oh-my-bash..."
   git clone git://github.com/ohmybash/oh-my-bash.git ${OSH}

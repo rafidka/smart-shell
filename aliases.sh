@@ -25,4 +25,4 @@ alias topmem="ps -eo pmem,pcpu,vsize,pid,cmd | sort -k 1 -nr"
 alias topcpu="ps -eo pmem,pcpu,vsize,pid,cmd | sort -k 2 -nr"
 
 # Use vimcat to colorize cat
-alias vimcat=~/bin/vimcat
+alias vimcat=${SMARTSHELL_PLUGINS}/vimcat

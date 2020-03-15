@@ -4,6 +4,7 @@
 # Path to your oh-my-zsh installation.
 export ZSH=${SMARTSHELL_PLUGINS}/oh-my-zsh
 
+# TODO: Should the installation part be moved to install-plugins.sh?
 [ -d ${ZSH} ] || {
   git clone https://github.com/ohmyzsh/ohmyzsh.git ${ZSH}
 }
