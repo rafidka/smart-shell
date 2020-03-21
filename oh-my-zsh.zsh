@@ -133,7 +133,25 @@ function ss_prompt_python_env() {
   fi
 }
 
-AGNOSTER_PROMPT_SEGMENTS=(prompt_status prompt_context ss_prompt_python_env prompt_dir prompt_git prompt_end)
+# Customized version of prompt_context which:
+# - Uses yellow color instead of the default color
+# - Allow setting custom label through the SS_ZSH_CUSTOM_PROMPT variable
+function ss_prompt_context() {
+  if ! [[ -z $SS_ZSH_CUSTOM_PROMPT ]]; then
+    local user="$SS_ZSH_CUSTOM_PROMPT"
+    color=red
+    prompt_segment $color $PRIMARY_FG " $user "
+  else
+    local user=`whoami`
+
+    if [[ "$user" != "$DEFAULT_USER" || -n "$SSH_CONNECTION" ]]; then
+      color=red
+      prompt_segment $color $PRIMARY_FG " %(!.%{%F{yellow}%}.)$user@%m "
+    fi
+  fi
+}
+
+AGNOSTER_PROMPT_SEGMENTS=(prompt_status ss_prompt_context ss_prompt_python_env prompt_dir prompt_git prompt_end)
 DEFAULT_USER=rafidka
 
 # User configuration
