@@ -1,5 +1,5 @@
 # Add colors and a '/' after directory names.
-if [ `uname` == Darwin ]; then
+if [[ "`uname`" == "Darwin" ]]; then
   # ls on macOS uses -G for colors
   alias ls='ls -GF'
 else
@@ -26,3 +26,4 @@ alias topcpu="ps -eo pmem,pcpu,vsize,pid,cmd | sort -k 2 -nr"
 
 # Use vimcat to colorize cat
 alias vimcat=${SMARTSHELL_PLUGINS}/vimcat
+
