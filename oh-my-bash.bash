@@ -12,8 +12,8 @@ export OSH=${SMARTSHELL_PLUGINS}/oh-my-bash
 # Using powerline-multiline. For configuration, see:
 # https://github.com/ohmybash/oh-my-bash/tree/master/themes/powerline-multiline
 function __powerline_custom_label_prompt {
-  if ! [[ -z $SS_OSH_POWERLINE_PROMPT_CUSTOM_LABEL ]]; then
-    echo "$SS_OSH_POWERLINE_PROMPT_CUSTOM_LABEL|${USER_INFO_THEME_PROMPT_COLOR_SUDO}"
+  if ! [[ -z $SS_BASH_CUSTOM_PROMPT ]]; then
+    echo "$SS_BASH_CUSTOM_PROMPT|${USER_INFO_THEME_PROMPT_COLOR_SUDO}"
   fi
 }
 POWERLINE_LEFT_PROMPT="custom_label python_venv cwd scm"
