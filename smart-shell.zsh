@@ -10,7 +10,12 @@ source ${SMARTSHELL_HOME}/smart-shell-common.sh
 # directory hierarchy and C-R to search for command in the history. Adding
 # C-f to search the content of the files in the current folder hierarchy.
 __ss_fzf_file_content_search() {
-  local cmd="command ag --nobreak --noheading --nocolor . 2> /dev/null"
+  if [[ -n $SS_AG_COMMAND ]]; then
+    local cmd="command $SS_AG_COMMAND --nobreak --noheading --nocolor . 2> /dev/null"
+  else
+    local cmd="command ag --nobreak --noheading --nocolor . 2> /dev/null"
+  fi
+
   setopt localoptions pipefail no_aliases 2> /dev/null
   eval "$cmd" | FZF_DEFAULT_OPTS="--height ${FZF_TMUX_HEIGHT:-40%} --reverse $FZF_DEFAULT_OPTS $FZF_CTRL_T_OPTS" $(__fzfcmd) -m "$@" | while read item; do
     A="$(echo 'one_two_three_four_five' | cut -d'_' -f2)"
