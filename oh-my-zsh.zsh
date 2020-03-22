@@ -150,7 +150,7 @@ function ss_prompt_context() {
     fi
   fi
 }
-
+PRIMARY_FG=white
 AGNOSTER_PROMPT_SEGMENTS=(prompt_status ss_prompt_context ss_prompt_python_env prompt_dir prompt_git prompt_end)
 DEFAULT_USER=rafidka
 
