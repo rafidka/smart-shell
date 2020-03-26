@@ -82,6 +82,13 @@ HIST_STAMPS="yyyy-mm-dd"
   git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-${ZSH}/custom}/plugins/zsh-autosuggestions
 }
 
+# Install zsh-completions:
+# https://github.com/zsh-users/zsh-completions#oh-my-zsh
+[ -d ${ZSH_CUSTOM:-${ZSH}/custom}/plugins/zsh-completions ] || {
+  echo "Installing zsh-completions..."
+  git clone https://github.com/zsh-users/zsh-completions.git ${ZSH_CUSTOM:-${ZSH}/custom}/plugins/zsh-completions
+}
+
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
@@ -97,6 +104,7 @@ plugins=(
     autojump
     git
     zsh-autosuggestions
+    zsh-completions
     zsh-interactive-cd
 )
 
