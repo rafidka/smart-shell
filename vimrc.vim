@@ -21,6 +21,7 @@ set laststatus=2          " always have status bar
 set linebreak             " This displays long lines as wrapped at word boundries
 set matchtime=10          " Time to flash the brack with showmatch
 set nobackup              " Don't keep a backup file
+set nowritebackup         " For coc.vim: some language servers have issues with backup files.
 set nocompatible          " Use Vim defaults (much better!)
 set nofen                 " disable folds
 set notimeout             " i like to be pokey
@@ -101,7 +102,6 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " fzf is a general-purpose command-line fuzzy finder.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 
 " Show relative line numbers. Vim already supports relative line numbers, but
 " to show both absolute and relative we can use Vim's absolute numbers and
@@ -139,8 +139,11 @@ let g:airline#extensions#tabline#enabled = 1
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" vim-go
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+" " vim-go
+" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" neoclide (LSP for Vim)
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Initialize plugin system
 call plug#end()
@@ -189,3 +192,5 @@ let g:ctrlp_cmd = 'CtrlP'
 if has('mouse_sgr')
     set ttymouse=sgr
 endif
+
+:so ~/smart-shell/coc.vim
