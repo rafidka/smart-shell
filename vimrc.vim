@@ -21,7 +21,6 @@ set laststatus=2          " always have status bar
 set linebreak             " This displays long lines as wrapped at word boundries
 set matchtime=10          " Time to flash the brack with showmatch
 set nobackup              " Don't keep a backup file
-set nowritebackup         " For coc.vim: some language servers have issues with backup files.
 set nocompatible          " Use Vim defaults (much better!)
 set nofen                 " disable folds
 set notimeout             " i like to be pokey
@@ -142,9 +141,6 @@ Plug 'vim-airline/vim-airline-themes'
 " " vim-go
 " Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-" neoclide (LSP for Vim)
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
 " Initialize plugin system
 call plug#end()
 
@@ -193,4 +189,3 @@ if has('mouse_sgr')
     set ttymouse=sgr
 endif
 
-:so ~/smart-shell/coc.vim
