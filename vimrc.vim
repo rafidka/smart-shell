@@ -45,6 +45,7 @@ set report=0              " Report every change in the file
 set hlsearch              " Highlight search matches
 set incsearch             " Enable incremental search
 set mouse=a               " Enable mouse in all modes (see help mouse)
+set encoding=UTF-8
 
 "Longer Set options
 set cscopequickfix=s-,c-,d-,i-,t-,e-,g-,f-   " useful for cscope in quickfix
@@ -102,17 +103,14 @@ Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 " fzf is a general-purpose command-line fuzzy finder.
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
-" Show relative line numbers. Vim already supports relative line numbers, but
-" to show both absolute and relative we can use Vim's absolute numbers and
-" install a plugn for displaying relative numbers.
-" --- DISABLING RtlvNmbr for now because it seems to be causing Vim to be slow.
-" Plug 'vim-scripts/RltvNmbr.vim'
+"Plug 'itchyny/lightline.vim'
 
-Plug 'itchyny/lightline.vim'
-
-" NERDTree
+" NERDTree and friends
+" https://github.com/preservim/nerdtree
 Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'ryanoasis/vim-devicons'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " bufexplorer
 Plug 'jlanzarotta/bufexplorer'
@@ -134,12 +132,11 @@ let g:python_highlight_all = 1
 Plug 'vim-python/python-syntax'
 
 " vim-airline
-let g:airline#extensions#tabline#enabled = 1
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-" " vim-go
-" Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'tpope/vim-capslock'
+
 
 " Initialize plugin system
 call plug#end()
@@ -155,6 +152,8 @@ let g:prettier#autoformat = 0
 " vim-airline configuration
 let g:airline_theme = 'luna'                    " Airline theme. See: https://github.com/vim-airline/vim-airline-themes
 let g:airline#extensions#tabline#enabled = 1    " automatically display all buffers when there's only one tab open.
+let g:airline#extensions#tabline#left_sep = ' '
+let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_statusline_ontop = 1              " status line on top, making room for other plugins to use the status line.
 let g:airline_powerline_fonts = 1               " integrate with powerline fonts - require installation of a patched powerline font.
 
@@ -168,16 +167,22 @@ nnoremap <silent> <F12> :FZF<CR>
 
 " NERDTree config: F11 to toggle the tree. Also, close vim if the only window left is NERDTreeClose vim if the only window left is NERDTree
 nnoremap <silent> <F11> :NERDTreeToggle<CR>
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" NERDTree config: Open tree if no file is open
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" " NERDTree config: Open tree if no file is open
+" autocmd StdinReadPre * let s:std_in=1
+" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Start NERDTree. If a file is specified, move the cursor to its window.
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
 
 " bugexplorer config: explore/next/previous: F2, F3, F4
 nnoremap <silent> <F2> :BufExplorer<CR>
-nnoremap <silent> <F3> :bn<CR>
-nnoremap <silent> <F4> :bp<CR>
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
 
 " CtrlP config
 let g:ctrlp_map = '<c-p>'
