@@ -121,9 +121,6 @@ Plug 'tpope/vim-fugitive'
 " editorconfig vim plugin
 Plug 'editorconfig/editorconfig-vim'
 
-" CtrlP
-Plug 'ctrlpvim/ctrlp.vim'
-
 " rust.vim
 Plug 'rust-lang/rust.vim'
 
@@ -137,6 +134,10 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'tpope/vim-capslock'
 
+
+" coc plugin
+" https://github.com/neoclide/coc.nvim
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Initialize plugin system
 call plug#end()
@@ -157,11 +158,6 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_statusline_ontop = 1              " status line on top, making room for other plugins to use the status line.
 let g:airline_powerline_fonts = 1               " integrate with powerline fonts - require installation of a patched powerline font.
 
-" --- DISABLING RtlvNmbr for now because it seems to be causing Vim to be slow.
-" if has('nvim')
-"   call RltvNmbr#RltvNmbrCtrl(1)   " Show relative numbers
-" endif
-
 " fzf config: F12 to open fzf
 nnoremap <silent> <F12> :FZF<CR>
 
@@ -176,6 +172,10 @@ nnoremap <silent> <F11> :NERDTreeToggle<CR>
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 
+" Exit Vim if NERDTree is the only window left.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
+    \ quit | endif
+
 
 " bugexplorer config: explore/next/previous: F2, F3, F4
 nnoremap <silent> <F2> :BufExplorer<CR>
@@ -184,13 +184,11 @@ nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
-" CtrlP config
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-
 " Enable mouse reporting through SGR if available.
 " https://iterm2.com/faq.html
 if has('mouse_sgr')
     set ttymouse=sgr
 endif
+
+:so ~/smart-shell/coc.vim
 
