@@ -159,18 +159,15 @@ let g:airline_statusline_ontop = 1              " status line on top, making roo
 let g:airline_powerline_fonts = 1               " integrate with powerline fonts - require installation of a patched powerline font.
 
 " fzf config: F12 to open fzf
-nnoremap <silent> <F12> :FZF<CR>
+nnoremap <silent> <c-p> :FZF<CR>
 
 " NERDTree config: F11 to toggle the tree. Also, close vim if the only window left is NERDTreeClose vim if the only window left is NERDTree
 nnoremap <silent> <F11> :NERDTreeToggle<CR>
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" " NERDTree config: Open tree if no file is open
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
-" Start NERDTree. If a file is specified, move the cursor to its window.
+" Start NERDTree when Vim starts with a directory argument.
 autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
 
 " Exit Vim if NERDTree is the only window left.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() |
