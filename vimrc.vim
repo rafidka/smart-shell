@@ -101,7 +101,8 @@ Plug 'tomasiser/vim-code-dark'
 Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 " fzf is a general-purpose command-line fuzzy finder.
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 "Plug 'itchyny/lightline.vim'
 
@@ -111,9 +112,6 @@ Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-
-" bufexplorer
-Plug 'jlanzarotta/bufexplorer'
 
 " vim-fugitive
 Plug 'tpope/vim-fugitive'
@@ -158,8 +156,15 @@ let g:airline#extensions#tabline#left_alt_sep = '|'
 let g:airline_statusline_ontop = 1              " status line on top, making room for other plugins to use the status line.
 let g:airline_powerline_fonts = 1               " integrate with powerline fonts - require installation of a patched powerline font.
 
-" fzf config: F12 to open fzf
-nnoremap <silent> <c-p> :FZF<CR>
+" fzf config
+" C-P to open fzf
+nnoremap <silent> <c-p> :Files<CR>
+" F2 to open buffers
+nnoremap <silent> <F2> :Buffers<CR>
+" F3 to search file contents
+nnoremap <silent> <F3> :Ag<CR>
+" F4 to search in the lines of the current buffer
+nnoremap <silent> <F4> :BLines<CR>
 
 " NERDTree config: F11 to toggle the tree. Also, close vim if the only window left is NERDTreeClose vim if the only window left is NERDTree
 nnoremap <silent> <F11> :NERDTreeToggle<CR>
@@ -175,7 +180,6 @@ autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTr
 
 
 " bugexplorer config: explore/next/previous: F2, F3, F4
-nnoremap <silent> <F2> :BufExplorer<CR>
 nnoremap <silent> [b :bprevious<CR>
 nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
