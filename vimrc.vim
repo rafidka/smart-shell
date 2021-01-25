@@ -132,10 +132,11 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'tpope/vim-capslock'
 
-
 " coc plugin
 " https://github.com/neoclide/coc.nvim
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'kevinoid/vim-jsonc'
 
 " Initialize plugin system
 call plug#end()
