@@ -97,8 +97,10 @@ endif
 " vim-code-dark https://github.com/tomasiser/vim-code-dark#installation
 Plug 'tomasiser/vim-code-dark'
 
-" vim-prettier
-Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
+" post install (yarn install | npm install) then load plugin only for editing supported files
+Plug 'prettier/vim-prettier', {
+  \ 'do': 'yarn install',
+  \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
 
 " fzf is a general-purpose command-line fuzzy finder.
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -138,6 +140,13 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 Plug 'kevinoid/vim-jsonc'
 
+Plug 'tell-k/vim-autopep8'
+let g:autopep8_max_line_length = 79
+let g:autopep8_aggressive = 1
+let g:autopep8_indent_size = 4
+let g:autopep8_on_save = 0
+let g:autopep8_disable_show_diff = 1
+
 " Initialize plugin system
 call plug#end()
 
@@ -168,7 +177,10 @@ nnoremap <silent> <F3> :Ag<CR>
 nnoremap <silent> <F4> :BLines<CR>
 
 " NERDTree config: F11 to toggle the tree. Also, close vim if the only window left is NERDTreeClose vim if the only window left is NERDTree
-nnoremap <silent> <F11> :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>nt :NERDTreeToggle<CR>
+nnoremap <silent> <Leader>nr :NERDTreeFind<CR>
+
+nnoremap <silent> <Leader>ap :Autopep8<CR>
 
 " Start NERDTree when Vim starts with a directory argument.
 autocmd StdinReadPre * let s:std_in=1
