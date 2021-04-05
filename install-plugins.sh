@@ -18,6 +18,6 @@ export FZF=${SMARTSHELL_PLUGINS}/fzf
 [ -f ${SMARTSHELL_PLUGINS}/vimcat ] || {
   echo "Downloading vimcat..."
   mkdir -p ${SMARTSHELL_PLUGINS}
-  wget https://www.vim.org/scripts/download_script.php?src_id=23422 -O ${SMARTSHELL_PLUGINS}/vimcat
+  wget 'https://www.vim.org/scripts/download_script.php?src_id=23422' -O ${SMARTSHELL_PLUGINS}/vimcat
   chmod u+x ${SMARTSHELL_PLUGINS}/vimcat
 }
