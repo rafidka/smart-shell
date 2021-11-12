@@ -109,8 +109,8 @@ plugins=(
 )
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  # Add osx plugin
-  plugins=(${plugins[@]} osx)
+  # Add macos plugin
+  plugins=(${plugins[@]} macos)
 fi
 
 # Add zsh-syntax-highlighting plugin; it must be the last:
