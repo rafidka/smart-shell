@@ -30,15 +30,4 @@ cat ~/.zshrc | grep -q '>>> smart-shell >>>' || {
 TEXT
 }
 
-# Ensure that .vimrc imports smart-shell's vimrc
-cat ~/.vimrc | grep -q '>>> smart-shell >>>' || {
-  echo "Updating .vimrc..."
-  cat <<TEXT >> ~/.vimrc
-" >>> smart-shell >>>
-" !! Contents within this block are managed by smart-shell
-:so ~/smart-shell/vimrc.vim
-" <<< smart-shell <<<
-TEXT
-}
-
 echo "Done."
