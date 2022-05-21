@@ -160,7 +160,13 @@ function ss_prompt_context() {
 }
 PRIMARY_FG=white
 AGNOSTER_PROMPT_SEGMENTS=(prompt_status ss_prompt_context ss_prompt_python_env prompt_dir prompt_git prompt_end)
-DEFAULT_USER=rafidka
+
+if [[ "`uname`" == "Darwin" ]]; then
+  # Dirty hack since my username on macOS is rafidka :)
+  DEFAULT_USER=rafidka
+else
+  DEFAULT_USER=rafid
+fi
 
 # User configuration
 
