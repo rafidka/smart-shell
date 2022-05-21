@@ -27,3 +27,8 @@ alias topcpu="ps -eo pmem,pcpu,vsize,pid,cmd | sort -k 2 -nr"
 # Use vimcat to colorize cat
 alias vimcat=${SMARTSHELL_PLUGINS}/vimcat
 
+# Commands for copying and pasting from clipboard in Linux.
+if [[ "`uname`" == "Linux" ]]; then
+    alias xcopy="xclip -selection c"
+    alias xpaste="xclip -selection c -o"
+fi
