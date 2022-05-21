@@ -78,7 +78,7 @@ HIST_STAMPS="yyyy-mm-dd"
 # Install zsh-autosuggestions:
 # https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh
 [ -d ${ZSH_CUSTOM:-${ZSH}/custom}/plugins/zsh-autosuggestions ] || {
-  echo "Installing zsh-syntax-highlighting..."
+  echo "Installing zsh-autosuggestions..."
   git clone https://github.com/zsh-users/zsh-autosuggestions.git ${ZSH_CUSTOM:-${ZSH}/custom}/plugins/zsh-autosuggestions
 }
 
