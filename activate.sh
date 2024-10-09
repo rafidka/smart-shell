@@ -3,7 +3,7 @@ currdir=`pwd`
 export SMARTSHELL_HOME=~/smart-shell
 export SMARTSHELL_PLUGINS=${SMARTSHELL_HOME}/plugins
 cd ${SMARTSHELL_HOME}
-git pull origin master
+git pull origin main
 
 case $SHELL in
 *zsh)
