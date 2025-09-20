@@ -1,3 +1,7 @@
+** **DEPRECATION NOTICE: `smart-shell` is now part of my [`homedir` repo](https://github.com/rafidka/homedir).** **
+
+---
+
 This repository contains a set of opinionated configurations to improve the
 bash experience. I use bash a lot in my day to day job and outside it. One
 thing I frequently struggle with is when I have to work on another machine,
